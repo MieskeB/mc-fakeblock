@@ -19,15 +19,17 @@ public class onSneak implements Listener {
 
     @EventHandler
     public void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
-        Player player = event.getPlayer();
-        if (player.isSneaking()) {
-            Location location = event.getPlayer().getLocation();
-            location.setY(location.getBlockY() - 1);
-            if (!needsTeleport(location)) {
-                return;
+        if (this.plugin.getSettingsManager().getConfig().getBoolean("fall-by-sneaking")) {
+            Player player = event.getPlayer();
+            if (player.isSneaking()) {
+                Location location = event.getPlayer().getLocation();
+                location.setY(location.getBlockY() - 1);
+                if (!needsTeleport(location)) {
+                    return;
+                }
+                location.setY(location.getBlockY() + 0.99);
+                player.teleport(location);
             }
-            location.setY(location.getBlockY() + 0.99);
-            player.teleport(location);
         }
     }
 

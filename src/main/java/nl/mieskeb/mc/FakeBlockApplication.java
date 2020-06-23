@@ -10,6 +10,7 @@ public class FakeBlockApplication extends JavaPlugin {
         System.out.println("Fake block initializing...");
 
         this.settingsManager = new SettingsManager(this);
+        this.settingsManager.getConfig();
         this.settingsManager.getBlocksConfig();
 
         this.getCommand("fakeblock").setTabCompleter(new FakeBlockTabComplete(this));
