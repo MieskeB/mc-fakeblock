@@ -16,7 +16,8 @@ public class FakeBlockApplication extends JavaPlugin {
         this.getCommand("fakeblock").setTabCompleter(new FakeBlockTabComplete(this));
         this.getCommand("fakeblock").setExecutor(new FakeBlockCommand(this));
 
-        this.getServer().getPluginManager().registerEvents(new onSneak(this), this);
+        this.getServer().getPluginManager().registerEvents(new OnSneak(this), this);
+        this.getServer().getPluginManager().registerEvents(new OnPlayerMove(this), this);
 
         System.out.println("Fake block successfully initialized!");
     }
