@@ -1,0 +1,2 @@
+# Players fall through by default (false) or by sneaking (true)
+fall-by-sneaking: true
