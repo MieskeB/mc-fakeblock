@@ -1,0 +1,22 @@
+main: nl.mieskeb.mc.FakeBlockApplication
+name: FakeBlock
+version: 1.0.0
+description: creates and/or removes fake blocks
+authors: [MieskeB]
+website: www.michelbijnen.nl
+commands:
+  fakeblock:
+    description: creates or deletes a block
+    aliases: [fb]
+    permission: fakeblock.create
+    permission-message: You do not have permission to use this command.
+    usage: /<command> [create|delete] <x> <y> <z> [blockName]
+permissions:
+  fakeblock.*:
+    description: Allows you to use all commands in this plugin
+    default: false
+    children:
+      fakeblock.create: true
+  fakeblock.create:
+    description: Allows you to use the command /fb create
+    default: false
