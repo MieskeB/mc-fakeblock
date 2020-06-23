@@ -8,11 +8,37 @@ import java.io.File;
 public class SettingsManager {
     private FakeBlockApplication plugin;
 
+    private FileConfiguration config = null;
+    private File file = null;
+
     private FileConfiguration blocksConfig = null;
     private File blockFile = null;
 
     public SettingsManager(FakeBlockApplication plugin) {
         this.plugin = plugin;
+    }
+
+    public FileConfiguration getConfig() {
+        if (this.config != null) {
+            return this.config;
+        }
+
+        if (!this.plugin.getDataFolder().exists()) {
+            this.plugin.getDataFolder().mkdir();
+        }
+
+        this.file = new File(this.plugin.getDataFolder(), "config.yml");
+
+        if (!file.exists()) {
+            this.plugin.saveResource("config.yml", true);
+        }
+
+        this.config = YamlConfiguration.loadConfiguration(this.file);
+        return this.config;
+    }
+
+    public File getFile() {
+        return file;
     }
 
     public FileConfiguration getBlocksConfig() {
